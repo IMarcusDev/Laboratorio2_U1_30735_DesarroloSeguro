@@ -1,11 +1,11 @@
 # Hotel Reservas API
 
-API REST para gestión de hoteles, clientes y reservas — Node.js + Express + MySQL.
+API REST para gestión de hoteles, clientes y reservas — Node.js + Express + PostgreSQL.
 
 ## Requisitos
 
 - Node.js v18+
-- MySQL corriendo localmente
+- PostgreSQL corriendo localmente
 
 ## Instalación
 
@@ -14,11 +14,10 @@ API REST para gestión de hoteles, clientes y reservas — Node.js + Express + M
 npm install
 
 # 2. Crear el archivo de entorno
-cp .env.example .env
-# Editar .env si tus credenciales de MySQL son distintas a root/""
+touch .env
 
 # 3. Crear la base de datos
-mysql -u root -p < hotel_reservas.sql
+psql -U postgres -f init.sql
 ```
 
 ## Ejecución
@@ -31,7 +30,7 @@ npm start
 npm run dev
 ```
 
-La API escucha en `http://localhost:3000` por defecto.
+La API escucha en `http://localhost:3001` por defecto.
 
 ## Endpoints
 
@@ -74,9 +73,9 @@ La API escucha en `http://localhost:3000` por defecto.
 ```
 hotel-api/
 ├── src/
-│   ├── index.js                          # Entry point
+│   ├── index.js                          
 │   ├── db/
-│   │   └── pool.js                       # Pool de conexión MySQL
+│   │   └── pool.js                      
 │   ├── controllers/
 │   │   ├── hoteles.controller.js
 │   │   ├── clientes.controller.js
@@ -85,8 +84,9 @@ hotel-api/
 │       ├── hoteles.routes.js
 │       ├── clientes.routes.js
 │       └── reservas.routes.js
-├── .env.example
-├── hotel_reservas.sql
+├── .env
+├── sql/
+|    └──init.sql 
 ├── package.json
 └── README.md
 ```
